@@ -1,4 +1,4 @@
-import matter from "gray-matter";
+import matter, { stringify } from "gray-matter";
 import YAML, { JSON_SCHEMA } from "js-yaml";
 import _ from "lodash";
 import minimatch from "minimatch";
@@ -532,6 +532,9 @@ export class NoteUtilsV2 {
   }
 
   static genTitle(fname: string) {
+    if (_.toLower(fname) == fname) {
+      return _.upperFirst(DNodeUtilsV2.basename(fname, true));
+    }
     return DNodeUtilsV2.basename(fname, true);
   }
 
